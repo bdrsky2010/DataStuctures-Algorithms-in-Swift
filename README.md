@@ -14,6 +14,7 @@
 
 <!-- summary 아래 한칸 공백 두어야함 -->
   [github](https://github.com/bdrsky2010/DataStuctures-Algorithms-in-Swift/blob/main/DataStructures_in_Swift/Stack/Stack/main.swift)
+  
   [Blog](https://minjae1995.tistory.com/)
 </details>
 
@@ -23,5 +24,6 @@
 
 <!-- summary 아래 한칸 공백 두어야함 -->
   [github](https://github.com/bdrsky2010/DataStuctures-Algorithms-in-Swift/blob/main/DataStructures_in_Swift/Queue/Queue/main.swift)
+  
   [Blog](https://minjae1995.tistory.com/)
 </details>
