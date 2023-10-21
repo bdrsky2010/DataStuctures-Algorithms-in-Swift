@@ -1,6 +1,6 @@
-# DataStuctures-Algorithms-in-Swift
+# ☄️ DataStuctures-Algorithms-in-Swift
 
-## 자료구조(Data Structure)에 대한 기본적인 이해
+## 😀 자료구조(Data Structure)에 대한 기본적인 이해
 <details>
 <summary>링크</summary>
 
@@ -8,7 +8,7 @@
   [Blog](https://minjae1995.tistory.com/category/Data%20Structure%20in%20Swift)
 </details>
 
-## Stack
+## 😃 Stack
 <details>
 <summary>링크</summary>
 
@@ -18,7 +18,7 @@
   [Blog](https://minjae1995.tistory.com/)
 </details>
 
-## Queue
+## 😄 Queue
 <details>
 <summary>링크</summary>
 
