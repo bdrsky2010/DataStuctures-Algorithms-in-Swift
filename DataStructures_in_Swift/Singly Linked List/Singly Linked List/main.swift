@@ -22,9 +22,7 @@ class Node<T> {
 struct LinkedList<T: Equatable> {
 	// 연결리스트의 첫 번째 Node를 가리키는 head
 	private var head: Node<T>?
-	init(head: Node<T>? = nil) {
-		self.head = head
-	}
+
 	// 연결리스트의 사이즈를 카운트를 반환하는 프로퍼티
 	public var count: Int {
 		var cnt: Int = 0
@@ -70,6 +68,17 @@ struct LinkedList<T: Equatable> {
 		return head == nil ? true : false
 	}
 	
+	public func contains(_ element: T) -> Bool {
+		guard head != nil else { return false }
+		var node = head
+		while node?.next != nil {
+			if node?.data == element { return true }
+			node = node?.next
+		}
+		
+		return false
+	}
+	
 	// 원소를 맨 뒤에 추가해주는 메서드
 	mutating func append(_ element: T) {
 		// head가 비어있는 경우 Node 할당 후 head로 지정
@@ -107,13 +116,15 @@ struct LinkedList<T: Equatable> {
 				return
 			}
 			
-			// 1번째 이상의 인덱스 값이 들어온다면 해당 인덱스 - 1 만큼 iterator node로 순회하며
+			// 해당 인덱스 - 1 만큼 iterator node로 순회하며
 			// 새로운 node를 할당 후 새 node의 next는 iterator node의 next를 가리키고
 			// iterator node의 next가 새 node를 가리키게 한다
-			var node: Node? = head
-			(1...(index - 1)).forEach { _ in
+			var node = head
+			for _ in 0..<(index - 1) {
+				if node?.next == nil { break }
 				node = node?.next
 			}
+			
 			let newNode: Node = Node(element)
 			newNode.next = node?.next
 			node?.next = newNode
@@ -136,11 +147,12 @@ struct LinkedList<T: Equatable> {
 			if index == 0 {
 				head = head?.next
 			}
-			
 			var node: Node? = head
-			(1...(index - 1)).forEach { _ in
+			for _ in 0..<(index - 1) {
+				if node?.next?.next == nil { break }
 				node = node?.next
 			}
+			
 			node?.next = node?.next?.next
 			
 		} catch AccessError.outOfRange {
@@ -176,6 +188,16 @@ struct LinkedList<T: Equatable> {
 		return data
 	}
 	
+	func nodeAt(_ index: Int) -> Node<T>? {
+		guard head != nil else { return nil }
+		var node: Node? = head
+		for i in 0...count - 1 {
+			if i == index { break }
+			node = node?.next
+		}
+		return node
+	}
+	
 	func forEach(_ body: (T) -> Void) {
 		guard head != nil else { return }
 		var node: Node? = head
@@ -187,7 +209,7 @@ struct LinkedList<T: Equatable> {
 	}
 	
 	func show() {
-		if head == nil { print(head) }
+		if head == nil { print([]) }
 		else {
 			var node = head
 			var list: [T] = []
@@ -202,19 +224,35 @@ struct LinkedList<T: Equatable> {
 		}
 	}
 }
-var list: LinkedList = LinkedList<Int>()
+//var list: LinkedList = LinkedList<Int>()
+//list.show()
+//(1...10).forEach { _ in list.append(Int.random(in: (1...20))) }
+//print(list.count)
+//list.show()
+//list.insert(100, at: 2)
+//list.show()
+//list.remove(at: 10)
+//list.show()
+//print(list.removeFirst())
+//list.show()
+//print(list.removeLast())
+//list.show()
+//list.forEach {
+//	print($0)
+//}
+//print(list.nodeAt(3)?.data)
+
+var list = LinkedList<Int>()
 list.show()
-(1...10).forEach { _ in list.append(Int.random(in: (1...20))) }
-print(list.count)
+list.append(1)
+list.append(2)
+list.append(3)
 list.show()
-list.insert(100, at: 2)
+list.insert(4, at: 1)
+list.insert(6, at: 2)
 list.show()
-list.remove(at: 10)
-list.show()
-print(list.removeFirst())
-list.show()
-print(list.removeLast())
-list.show()
-list.forEach {
-	print($0)
-}
+list.remove(at: 2)
+print(list.contains(10))
+print(list.nodeAt(0)?.data) // 1
+print(list.nodeAt(1)?.data) // 4
+print(list.nodeAt(2)?.data) // 3
