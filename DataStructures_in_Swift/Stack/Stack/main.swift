@@ -1,6 +1,6 @@
 import Foundation
 
-struct Stack<T> {
+struct Stack<T: Equatable> {
 	// 스택을 선형 형태로 저장하기 위한 저장 프로퍼티
 	var stack: [T] = []
 	
